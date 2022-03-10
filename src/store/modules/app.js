@@ -1,5 +1,5 @@
 import * as types from '@/store/mutation-types'
-import appConfig from '@/app.config.json'
+import config from '@/config'
 
 const getters = {
   appTitle: (state) => state.appTitle,
@@ -19,8 +19,8 @@ const mutations = {
 }
 
 const state = {
-  appTitle: 'Vue Modular Boilerplate',
-  appVersion: appConfig.version
+  appTitle: config.appTitle,
+  appVersion: config.appVersion
 }
 
 export default {
