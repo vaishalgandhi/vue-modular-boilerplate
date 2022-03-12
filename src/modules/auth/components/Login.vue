@@ -40,7 +40,7 @@
               </v-flex>
               <v-flex text-xs-center>
                 <v-btn
-                  :to="{ name: 'forgotPassword' }"
+                  :to="{ name: 'password.forgot' }"
                   small
                   text
                   class="btnForgotPassword"
@@ -84,7 +84,7 @@ export default {
   },
   created() {
     if (this.$store.state.auth.isTokenSet) {
-      router.push({ name: 'home' })
+      router.push({ name: 'dashboard.index' })
     }
   }
 }

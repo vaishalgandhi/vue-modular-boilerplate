@@ -7,7 +7,7 @@
       <div class="headline text-uppercase ml-0">
         <div v-resize-text>
           <router-link
-            :to="{ name: 'home' }"
+            :to="{ name: 'dashboard.index' }"
             tag="span"
             style="cursor: pointer"
             v-if="isTokenSet"

@@ -1,12 +1,8 @@
 import * as types from '@/store/mutation-types'
-import api from '@/services/api/forgotPassword'
+import api from '../services'
 import { buildSuccess, handleError } from '@/utils/utils.js'
 
-const getters = {
-  resetEmailSent: (state) => state.resetEmailSent
-}
-
-const actions = {
+export default {
   forgotPassword({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit(types.SHOW_LOADING, true)
@@ -31,21 +27,4 @@ const actions = {
         })
     })
   }
-}
-
-const mutations = {
-  [types.RESET_EMAIL_SENT](state, value) {
-    state.resetEmailSent = value
-  }
-}
-
-const state = {
-  resetEmailSent: false
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }
