@@ -29,7 +29,7 @@ const verifyAuthorization = (to, from, next) => {
    */
   if (requiresAuth && !isTokenSet) {
     // eslint-disable-next-line callback-return
-    next('/login')
+    next({ name: 'auth.login' })
     return
   }
 

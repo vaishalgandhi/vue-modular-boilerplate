@@ -20,7 +20,7 @@ export default {
             )
             window.localStorage.setItem(
               'access_token',
-              JSON.stringify(response.data.token)
+              response.data.access_token
             )
             window.localStorage.setItem(
               'tokenExpiration',
@@ -32,14 +32,14 @@ export default {
               )
             )
             commit(types.SAVE_USER, response.data.user)
-            commit(types.SAVE_TOKEN, response.data.token)
+            commit(types.SAVE_TOKEN, response.data.access_token)
             commit(types.EMAIL_VERIFIED, response.data.user.verified)
             buildSuccess(
               null,
               commit,
               resolve,
               router.push({
-                name: 'home'
+                name: 'dashboard.index'
               })
             )
           }
@@ -57,7 +57,7 @@ export default {
           if (response.status === 200) {
             window.localStorage.setItem(
               'access_token',
-              JSON.stringify(response.data.token)
+              response.data.access_token
             )
             window.localStorage.setItem(
               'tokenExpiration',
@@ -68,7 +68,7 @@ export default {
                 )
               )
             )
-            commit(types.SAVE_TOKEN, response.data.token)
+            commit(types.SAVE_TOKEN, response.data.access_token)
             resolve()
           }
         })
@@ -80,7 +80,7 @@ export default {
   autoLogin({ commit }) {
     const user = JSON.parse(localStorage.getItem('user'))
     commit(types.SAVE_USER, user)
-    commit(types.SAVE_TOKEN, JSON.parse(localStorage.getItem('access_token')))
+    commit(types.SAVE_TOKEN, localStorage.getItem('access_token'))
     commit(types.SET_LOCALE, JSON.parse(localStorage.getItem('locale')))
     commit(types.EMAIL_VERIFIED, user.verified)
   },
@@ -90,7 +90,7 @@ export default {
     window.localStorage.removeItem('user')
     commit(types.LOGOUT)
     router.push({
-      name: 'login'
+      name: 'auth.login'
     })
   },
   userSignUp({ commit }, payload) {
@@ -106,16 +106,16 @@ export default {
             )
             window.localStorage.setItem(
               'access_token',
-              JSON.stringify(response.data.token)
+              response.data.access_token
             )
             commit(types.SAVE_USER, response.data.user)
-            commit(types.SAVE_TOKEN, response.data.token)
+            commit(types.SAVE_TOKEN, response.data.access_token)
             buildSuccess(
               null,
               commit,
               resolve,
               router.push({
-                name: 'home'
+                name: 'dashboard.index'
               })
             )
           }

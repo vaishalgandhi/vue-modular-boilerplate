@@ -1,7 +1,7 @@
 export default [
   {
     path: '/users',
-    name: 'users',
+    name: 'users.index',
     meta: {
       requiresAuth: true
     },

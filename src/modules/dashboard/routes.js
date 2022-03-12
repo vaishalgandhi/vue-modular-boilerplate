@@ -1,7 +1,7 @@
 export default [
   {
     path: '/dashboard',
-    name: 'dashboard',
+    name: 'dashboard.index',
     meta: {
       requiresAuth: true
     },

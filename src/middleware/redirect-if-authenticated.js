@@ -11,7 +11,7 @@ const redirectIfAuthenticated = (to, from, next) => {
    * Redirect to dashboard
    */
   if (!needAuth(requiresAuth) && isTokenSet) {
-    next('/dashboard')
+    next({ name: 'dashboard.index' })
     return
   }
 

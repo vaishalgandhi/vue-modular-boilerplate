@@ -1,7 +1,7 @@
 export default [
   {
     path: '/profile',
-    name: 'profile',
+    name: 'profile.index',
     meta: {
       requiresAuth: true
     },
