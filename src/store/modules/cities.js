@@ -1,5 +1,5 @@
+import axios from 'axios'
 import * as types from '@/store/mutation-types'
-import api from '@/services/api/cities'
 import { handleError } from '@/utils/utils.js'
 
 const getters = {
@@ -9,8 +9,8 @@ const getters = {
 const actions = {
   getAllCities({ commit }) {
     return new Promise((resolve, reject) => {
-      api
-        .getAllCities()
+      axios
+        .get('/cities/all')
         .then((response) => {
           if (response.status === 200) {
             const cities = []

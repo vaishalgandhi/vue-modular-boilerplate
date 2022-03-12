@@ -42,28 +42,6 @@
           </v-list-item-action>
           <v-icon class="pl-2">mdi-weather-night</v-icon>
         </v-list-item>
-        <v-menu v-if="admin" offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" text class="btnAdmin hidden-sm-and-down">
-              <v-icon>mdi-lock</v-icon>
-              &nbsp;{{ $t('adminItems.ADMIN') }}
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item
-              v-for="(item, index) in adminItems"
-              :key="index"
-              :to="{ name: item.link }"
-              exact
-              :class="[item.class]"
-            >
-              <v-list-item-icon class="mr-2">
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
 
         <v-btn
           text
@@ -98,25 +76,6 @@
           </v-list-item-action>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-
-        <v-list-group v-if="admin" prepend-icon="mdi-lock" no-action>
-          <v-list-item slot="activator" class="pl-0">
-            <v-list-item-content>{{
-              $t('adminItems.ADMIN')
-            }}</v-list-item-content>
-          </v-list-item>
-          <v-list-item
-            v-for="(item, index) in adminItems"
-            :key="index"
-            :to="{ name: item.link }"
-            exact
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list-group>
 
         <v-list-item v-if="isTokenSet" @click="userLogout">
           <v-list-item-action>
@@ -203,28 +162,12 @@ export default {
     admin() {
       return this.user !== null ? this.user.role === 'admin' : false
     },
-    adminItems() {
-      return [
-        {
-          title: this.$t('adminItems.CITIES'),
-          link: 'admin-cities',
-          icon: 'mdi-city',
-          class: 'btnAdminCities'
-        },
-        {
-          title: this.$t('adminItems.USERS'),
-          link: 'admin-users',
-          icon: 'mdi-account-supervisor',
-          class: 'btnAdminUsers'
-        }
-      ]
-    },
     menuItems() {
       if (this.isTokenSet) {
         return [
           {
             title: this.$t('menuItems.HOME'),
-            link: 'home',
+            link: 'dashboard.index',
             icon: 'mdi-home',
             class: 'btnHome'
           },
@@ -236,7 +179,7 @@ export default {
           },
           {
             title: this.$t('menuItems.MY_PROFILE'),
-            link: 'profile',
+            link: 'profile.index',
             icon: 'mdi-face',
             class: 'btnProfile'
           }
@@ -256,13 +199,13 @@ export default {
         },
         {
           title: this.$t('menuItems.LOGIN'),
-          link: 'login',
+          link: 'auth.login',
           icon: 'mdi-lock',
           class: 'btnLogin'
         },
         {
           title: this.$t('menuItems.SIGNUP'),
-          link: 'signup',
+          link: 'auth.signup',
           icon: 'mdi-plus-circle-outline',
           class: 'btnLogin'
         }
