@@ -1,12 +1,8 @@
 import * as types from '@/store/mutation-types'
-import api from '@/services/api/resetPassword'
+import api from '../services'
 import { buildSuccess, handleError } from '@/utils/utils.js'
 
-const getters = {
-  showChangePasswordInputs: (state) => state.showChangePasswordInputs
-}
-
-const actions = {
+export default {
   resetPassword({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit(types.SHOW_LOADING, true)
@@ -32,21 +28,4 @@ const actions = {
         })
     })
   }
-}
-
-const mutations = {
-  [types.SHOW_CHANGE_PASSWORD_INPUTS](state, value) {
-    state.showChangePasswordInputs = value
-  }
-}
-
-const state = {
-  showChangePasswordInputs: true
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }
