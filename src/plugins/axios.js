@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { checkIfTokenNeedsRefresh } from '@/utils/utils.js'
+import appConfig from '@/config'
 
-axios.defaults.baseURL = process.env.VUE_APP_API_URL || ''
+axios.defaults.baseURL = appConfig.apiUrl || ''
 axios.defaults.headers.common['Accept-Language'] =
   JSON.parse(localStorage.getItem('locale')) || 'en'
+axios.defaults.headers.common.apikey = appConfig.apiKey || ''
 
 axios.interceptors.request.use(
   (config) => {
@@ -35,7 +37,7 @@ axios.interceptors.response.use(
   (response) => {
     // Do something with response data
     // Checks if app is being used in mobile
-    if (response.config.url !== `${process.env.VUE_APP_API_URL}/token`) {
+    if (response.config.url !== `${appConfig.apiUrl}/token`) {
       checkIfTokenNeedsRefresh()
     }
     return response

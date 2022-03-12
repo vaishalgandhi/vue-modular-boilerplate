@@ -1,5 +1,5 @@
 import * as types from '@/store/mutation-types'
-import config from '@/config'
+import appConfig from '@/config'
 
 const getters = {
   appTitle: (state) => state.appTitle,
@@ -19,8 +19,8 @@ const mutations = {
 }
 
 const state = {
-  appTitle: config.appTitle,
-  appVersion: config.appVersion
+  appTitle: appConfig.appTitle,
+  appVersion: appConfig.appVersion
 }
 
 export default {

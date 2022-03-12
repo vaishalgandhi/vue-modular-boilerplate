@@ -1,6 +1,5 @@
-require('dotenv').config()
 import envVariables from './environment'
-import appConfig from './app.config.json'
+import appConfig from './app'
 
 // merge the two config files together
 // the envVariables will overwrite properties
