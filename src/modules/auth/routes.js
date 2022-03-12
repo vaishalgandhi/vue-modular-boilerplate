@@ -12,12 +12,6 @@ export default [
       import(/* webpackChunkName: "signup" */ './components/SignUp.vue')
   },
   {
-    path: '/verify/:id',
-    name: 'auth.verify',
-    component: () =>
-      import(/* webpackChunkName: "verify" */ './components/Verify.vue')
-  },
-  {
     path: '/forgot',
     name: 'auth.forgotPassword',
     component: () =>

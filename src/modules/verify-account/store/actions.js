@@ -1,12 +1,8 @@
 import * as types from '@/store/mutation-types'
-import api from '@/services/api/verify'
+import api from '../services'
 import { buildSuccess, handleError } from '@/utils/utils.js'
 
-const getters = {
-  emailVerified: (state) => state.emailVerified
-}
-
-const actions = {
+export default {
   sendVerify({ commit }, id) {
     return new Promise((resolve, reject) => {
       commit(types.SHOW_LOADING, true)
@@ -41,21 +37,4 @@ const actions = {
         })
     })
   }
-}
-
-const mutations = {
-  [types.EMAIL_VERIFIED](state, value) {
-    state.emailVerified = value
-  }
-}
-
-const state = {
-  emailVerified: false
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }
