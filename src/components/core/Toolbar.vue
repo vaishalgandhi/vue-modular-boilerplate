@@ -172,12 +172,6 @@ export default {
             class: 'btnHome'
           },
           {
-            title: this.$t('menuItems.ABOUT'),
-            link: 'about',
-            icon: 'mdi-help-circle-outline',
-            class: 'btnAbout'
-          },
-          {
             title: this.$t('menuItems.MY_PROFILE'),
             link: 'profile.index',
             icon: 'mdi-face',
