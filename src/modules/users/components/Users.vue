@@ -430,10 +430,10 @@ export default {
       ]
     },
     items() {
-      return this.$store.state.adminUsers.users
+      return this.$store.state.users.users
     },
     totalItems() {
-      return this.$store.state.adminUsers.totalUsers
+      return this.$store.state.users.totalUsers
     }
   },
   watch: {
