@@ -1,7 +1,7 @@
 describe('Auth routes', () => {
   it('Forbids visits to home url if not authenticated', () => {
     cy.visit('/')
-    cy.visit('/home')
+    cy.visit('/dashboard')
     // url should be /login
     cy.url().should('include', '/login')
   })

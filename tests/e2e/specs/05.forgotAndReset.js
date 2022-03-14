@@ -3,28 +3,28 @@ let verification = ''
 
 describe('Forgot Password / Reset Password', () => {
   it('Visits the forgot password url', () => {
-    cy.visit('/forgot')
-    // url should be /forgot
-    cy.url().should('include', '/forgot')
+    cy.visit('/password/forgot')
+    // url should be /password/forgot
+    cy.url().should('include', '/password/forgot')
   })
   it('Checks input types', () => {
-    cy.visit('/forgot')
+    cy.visit('/password/forgot')
     // Checks input type is email
     cy.get('input[name=email]')
       .invoke('attr', 'type')
       .should('contain', 'email')
   })
   it('Displays errors when user does not exist', () => {
-    cy.visit('/forgot')
+    cy.visit('/password/forgot')
     cy.setLocaleToEN()
     cy.get('input[name=email]').clear().type(`${faker.internet.email()}{enter}`)
 
     cy.get('div.error').should('be.visible').contains('User does not exists')
     // and still be on the same URL
-    cy.url().should('include', '/forgot')
+    cy.url().should('include', '/password/forgot')
   })
   it('Forgot password', () => {
-    cy.visit('/forgot')
+    cy.visit('/password/forgot')
     cy.setLocaleToEN()
     cy.get('input[name=email]').clear().type('admin@admin.com{enter}')
 
@@ -36,7 +36,7 @@ describe('Forgot Password / Reset Password', () => {
       )
   })
   it('Checks input types reset password', () => {
-    cy.visit('/reset/12345')
+    cy.visit('/password/reset/12345')
     cy.setLocaleToEN()
     // Checks input type is password
     cy.get('input[name=password]')
@@ -47,7 +47,7 @@ describe('Forgot Password / Reset Password', () => {
       .should('contain', 'password')
   })
   it('Reset password', () => {
-    cy.visit('/forgot')
+    cy.visit('/password/forgot')
     cy.setLocaleToEN()
 
     // This does not run when executing Travis CI
@@ -55,22 +55,22 @@ describe('Forgot Password / Reset Password', () => {
       cy.server()
 
       // This is the post call we are interested in capturing
-      cy.route('POST', `${Cypress.env('API_URL')}/forgot`).as('forgot')
-      cy.visit('/forgot')
+      cy.route('POST', `${Cypress.env('API_URL')}/password/forgot`).as('forgot')
+      cy.visit('/password/forgot')
       cy.get('input[name=email]').clear().type('admin@admin.com{enter}')
 
-      cy.wait('@forgot')
+      cy.wait('@password.forgot')
 
       // Assert on XHR
-      cy.get('@forgot').then((xhr) => {
+      cy.get('@password.forgot').then((xhr) => {
         expect(xhr.status).to.eq(200)
         expect(xhr.responseBody).to.have.property('verification')
         verification = xhr.responseBody.verification
 
         // Go to reset password
-        cy.visit(`/reset/${verification}`)
+        cy.visit(`/password/reset/${verification}`)
         // url should be verify
-        cy.url().should('include', `/reset/${verification}`)
+        cy.url().should('include', `/password/reset/${verification}`)
 
         cy.get('input[name=password]').clear().type('12345')
         cy.get('input[name=confirmPassword]').clear().type('12345{enter}')

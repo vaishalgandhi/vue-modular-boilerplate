@@ -19,7 +19,7 @@ Cypress.Commands.add('login', (email) => {
     .type('12345{enter}')
 
   // url should be home
-  cy.url().should('include', '/home')
+  cy.url().should('include', '/dashboard')
 })
 
 Cypress.Commands.add('logout', () => {

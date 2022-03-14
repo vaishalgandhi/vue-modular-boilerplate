@@ -43,7 +43,7 @@ describe('Signup', () => {
     cy.get('input[name=confirmPassword]').clear().type('12345{enter}')
 
     // url should be home
-    cy.url().should('include', '/home')
+    cy.url().should('include', '/dashboard')
 
     // Accept to verify account
     cy.get('div.dlgVerifyAccount').and(
@@ -63,7 +63,7 @@ describe('Signup', () => {
     cy.login(email)
 
     // url should be home
-    cy.url().should('include', '/home')
+    cy.url().should('include', '/dashboard')
 
     // Accept to verify account
     cy.get('div.dlgVerifyAccount').and(
@@ -101,7 +101,7 @@ describe('Signup', () => {
     cy.login(email)
 
     // url should be home
-    cy.url().should('include', '/home')
+    cy.url().should('include', '/dashboard')
 
     // get verification and visit verification url
     let verification = ''
